@@ -1,6 +1,5 @@
 package com.example.tpspringboot.controller;
-import com.example.tpspringboot.entity.Persona;
-import com.example.tpspringboot.service.PersonaService;
+import com.example.tpspringboot.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,15 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class PersonaController {
+public class ClienteController {
 
     @Autowired
-    private PersonaService personaService;
+    private ClienteService clienteService;
 
-    @GetMapping("/viewPersonas")
+    @GetMapping("/viewClientes")
     public String viewBooks(Model model) {
-        model.addAttribute("personas", personaService.getAllPersonas());
-        return "view-personas";
+        model.addAttribute("clientes", clienteService.getAllClientes());
+        return "view-clientes";
     }
 
     @GetMapping("/greeting")
