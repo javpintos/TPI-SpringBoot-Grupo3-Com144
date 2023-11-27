@@ -14,8 +14,6 @@ import java.util.Map;
 @RestController
 public class RegistroIncidenteRestController {
     @Autowired
-    private TecnicoService tecnicoService;
-    @Autowired
     private RegistroIncidenteService registroIncidenteService;
 
 
@@ -61,7 +59,7 @@ public class RegistroIncidenteRestController {
     @DeleteMapping("registroincidente/{id}")
     public String deleteRegistroIncidenteById(@PathVariable("id") Long id){
         registroIncidenteService.deleteRegistroIncidenteById(id);
-        return "Técnico eliminado Correctamente";
+        return "Incidente eliminado correctamente";
     }
 
     @GetMapping("/registroincidente/CantidadResueltosByTecnicoId/{id}")
