@@ -12,9 +12,8 @@ import java.util.Set;
 public class Especialidad extends BaseEntity{
     @ManyToMany(mappedBy="especialidades")
     private Set<Tecnico> tecnicos;
-    /*
+
     @ManyToMany(mappedBy ="especialidades")
     private Set<TipoProblema> problemas;
 
-     */
 }

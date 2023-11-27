@@ -9,10 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TecnicoRespository extends JpaRepository<Tecnico, Long> {
     //JPQL
-    /*
     @Query("SELECT COUNT (*) from RegistroIncidente ri where ri.tecnico.id = :id")
         //@Query("SELECT t from Tecnico t where t.id = :id")
     int getCantidadResueltosByTecnicoId (@Param("id") Long id);
-
-     */
 }
