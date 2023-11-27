@@ -83,4 +83,10 @@ public class TecnicoRestController {
         tecnicoService.deleteTecnicoById(id);
         return "Técnico eliminado Correctamente";
     }
+
+    @GetMapping("/tecnico/cantidadResueltos/{id}")
+    public int getCantidadResueltosByTecnicoId (@PathVariable("id") Long id){
+        return tecnicoService.getCantidadResueltosByTecnicoId(id);
+    }
+
 }

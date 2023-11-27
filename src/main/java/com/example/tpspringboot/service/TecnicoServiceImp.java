@@ -46,11 +46,10 @@ public class TecnicoServiceImp implements TecnicoService{
         return tecnicoRepository.getReferenceById(id);
     }
 
-    /*
+
     @Override
     public int getCantidadResueltosByTecnicoId(Long id) {
         return tecnicoRepository.getCantidadResueltosByTecnicoId(id);
     }
 
-     */
 }

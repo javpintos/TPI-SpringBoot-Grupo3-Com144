@@ -12,5 +12,5 @@ public interface TecnicoService {
     Tecnico updateTecnico (Tecnico tecnico, Long id);
     void deleteTecnicoById(Long id);
     Tecnico findTecnicoById(Long id);
-    //int getCantidadResueltosByTecnicoId (Long id);
+    int getCantidadResueltosByTecnicoId (Long id);
 }
