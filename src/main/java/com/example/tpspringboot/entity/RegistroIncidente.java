@@ -25,10 +25,12 @@ public class RegistroIncidente {
     private String detalleProblema;
     private String observacionTecnica;
     private Boolean resuelto;
+
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="cliente_id", referencedColumnName = "id")
     private Cliente cliente;
+
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="incidente_id", referencedColumnName = "id")

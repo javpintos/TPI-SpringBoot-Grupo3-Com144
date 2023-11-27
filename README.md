@@ -1,75 +1,33 @@
+# AP-TPI-Grupo3-Com144
+Proyecto Spring Boot del Trabajo Práctico Integrador para el curso DESARROLLADOR JAVA INTERMEDIO en el marco de Argentina Programa 4.0
 
-# TP Spring Boot 📘
+<h2> Grupo 3 - Comisión 144 - Integrantes: </h2>
 
-Proyecto Spring Boot de ejemplo para el curso DESARROLLADOR JAVA INTERMEDIO en el marco de Argentina Programa 4.0
+- `Marcela Cerrudo`
+- `Luciana Quilcate`
+- `Myriam Leal`
+- `Javier Pintos`
 
-## Ejecutar de forma local 	📁
+<h2>Modelo de datos</h2>
 
-Clonar el projecto
-
-```bash
-  git clone https://github.com/ScenturionZ/TPSpringBoot
+```
+https://drive.google.com/file/d/1evOvj9PQ4rSChDK2tQutYxExgcSRZQsX/view?usp=sharing
 ```
 
-Instalar las dependencias del pom.xml
+<h2>Ejecutar de forma local</h2>
 
-```maven
-  mvn clean install
+<h3>Clonar el projecto</h3>
+
 ```
-
-Ejecutar el servidor con maven
-
-```bash
-  mvn spring-boot:run
+git clone https://github.com/javpintos/AP-TPI-Grupo3
 ```
+<h3>Instalar las dependencias del pom.xml</h3>
 
-
-## API Reference 📮
-
-#### Listar personas 📖
-
-```http
-  GET localhost:8080/personas
 ```
-
-#### Crear una persona 💾
-
-```http
-  POST localhost:8080/personas
+mvn clean install
 ```
-JSON a enviar
-```json
-{
-    "nombre": "Persona 1",
-    "email": "mail1@correo.com",
-    "celular": "3459876543",
-    "nacionalidadID" : 1,//ARGENTINA
-    "mascotas": [1,3]//IDS DE MASCOTA GARFIELD Y TOM YA CREADOS EN LA BASE
-}
+<h3>Ejecutar el servidor con maven</h3>
+
 ```
-
-#### Actualizar una persona 📝
-
-```http
-  PUT localhost:8080/personas/id
+mvn spring-boot:run
 ```
-
-| Parameter | Type      | Description                    |
-| :-------- | :-------  | :----------------------------- |
-| `id`      | `Integer` | **Required**. ID de la persona |
-
-#### Eliminar una persona ⛔
-
-```http
-  DELETE localhost:8080/personas/id
-```
-
-| Parameter | Type      | Description                    |
-| :-------- | :-------  | :----------------------------- |
-| `id`      | `Integer` | **Required**. ID de la persona |
-
-## Paginas utilizadas 🔗
-
- - [Spring Initializr](https://start.spring.io/)
- - [Thymeleaf](https://www.thymeleaf.org/)
-
