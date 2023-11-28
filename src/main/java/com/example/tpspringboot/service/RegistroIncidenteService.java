@@ -13,4 +13,6 @@ public interface RegistroIncidenteService {
     void deleteRegistroIncidenteById(Long id);
     int getCantidadResueltosByTecnicoId (Long id);
     int getCantRtosByTecnicoIdIncidenteID (Long tecnico_id, Long incidente_id);
+
+    RegistroIncidente findRegistroIncidenteById(Long id);
 }

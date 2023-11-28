@@ -54,4 +54,9 @@ public class RegistroIncidenteServiceImp implements RegistroIncidenteService{
     public int getCantRtosByTecnicoIdIncidenteID(Long tecnico_id, Long incidente_id) {
         return registroIncidenteRepository.getCantRtosByTecnicoIdIncidenteID(tecnico_id,incidente_id);
     }
+
+    @Override
+    public RegistroIncidente findRegistroIncidenteById(Long id){
+        return registroIncidenteRepository.getReferenceById(id);
+    }
 }

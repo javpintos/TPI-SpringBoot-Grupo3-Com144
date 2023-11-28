@@ -1,20 +1,13 @@
 package com.example.tpspringboot.controller;
 
-import com.example.tpspringboot.entity.Cliente;
-import com.example.tpspringboot.entity.Incidente;
-import com.example.tpspringboot.entity.RegistroIncidente;
-import com.example.tpspringboot.entity.Tecnico;
-import com.example.tpspringboot.service.ClienteService;
-import com.example.tpspringboot.service.IncidenteService;
-import com.example.tpspringboot.service.RegistroIncidenteService;
-import com.example.tpspringboot.service.TecnicoService;
+import com.example.tpspringboot.entity.*;
+import com.example.tpspringboot.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class RegistroIncidenteRestController {
@@ -30,6 +23,9 @@ public class RegistroIncidenteRestController {
     @Autowired
     private TecnicoService tecnicoService;
 
+    @Autowired
+    private TipoProblemaService tipoProblemaService;
+
     //Create
     @PostMapping("/registroIncidentes")
     public RegistroIncidente saveRegistro(@Validated @RequestBody Map<String, Object> body){
@@ -42,15 +38,8 @@ public class RegistroIncidenteRestController {
         Date fechaResolucion = null;
         String detalleProblema = String.valueOf(body.get("detalleProblema"));
         String observacionTecnica = String.valueOf(body.get("observacionTecnica"));
-        String resueltoInt = String.valueOf(body.get("resuelto"));
+        //String resueltoInt = String.valueOf(body.get("resuelto"));
         Boolean resuelto = false;
-        /*
-        if (resueltoInt=="1") {resuelto = true;}
-
-        else {
-            resuelto = false;
-        }
-        */
 
         //CLIENTE
 
@@ -67,6 +56,16 @@ public class RegistroIncidenteRestController {
         Long tecnicoId = Long.valueOf((Integer) body.get("tecnico_id"));
         Tecnico t = tecnicoService.findTecnicoById(tecnicoId);
 
+        //TIPO PROBLEMA
+
+        Set<TipoProblema> tp = new HashSet<TipoProblema>();
+        for (Integer id: (ArrayList<Integer>) body.get("problemas")) {
+            TipoProblema tipoProblema = tipoProblemaService.findTipoProblemaById(Long.valueOf(id));
+            tp.add(tipoProblema);
+        }
+
+        //REGISTRO INCIDENTE
+
         RegistroIncidente registro = new RegistroIncidente();
         registro.setFechaIncidente(fechaIncidente);
         registro.setFechaResolucion(fechaResolucion);
@@ -76,6 +75,7 @@ public class RegistroIncidenteRestController {
         registro.setCliente(c);
         registro.setIncidente(i);
         registro.setTecnico(t);
+        registro.setProblemas(tp);
 
         return registroIncidenteService.saveRegistroIncidente(registro);
     }
