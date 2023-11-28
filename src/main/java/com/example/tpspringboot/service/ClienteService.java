@@ -1,6 +1,7 @@
 package com.example.tpspringboot.service;
 
 import com.example.tpspringboot.entity.Cliente;
+import com.example.tpspringboot.entity.Incidente;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,4 +20,7 @@ public interface ClienteService {
 
     // Delete
     void deleteClienteById(Long id);
+
+    Cliente findClienteById(Long id);
+
 }

@@ -15,9 +15,9 @@ public interface RegistroIncidenteRepository extends JpaRepository<RegistroIncid
     int getCantidadResueltosByTecnicoId (@Param("id") Long id);
 
     //Quién fue el técnico con más incidentes resueltos de una determinada especialidad en los últimos N días
-    //@Query("SELECT COUNT (*) from RegistroIncidente ri where ri.tecnico.id = :tecnico_id AND ri.incidente.id= :incidente_id")
-    @Query("SELECT COUNT (*) from RegistroIncidente ")
-    int getCantRtosByTecnicoIdIncidenteID (@Param("id") Long tecnico_id, @Param("id") Long incidente_id);
+    @Query("SELECT COUNT (*) from RegistroIncidente ri where ri.tecnico.id = :tecnico_id AND ri.incidente.id= :incidente_id")
+    //@Query("SELECT COUNT (*) from RegistroIncidente ")
+    int getCantRtosByTecnicoIdIncidenteID (@Param("tecnico_id") Long tecnicoId, @Param("incidente_id") Long incidenteId);
 
     //Quién fue el técnico que más rápido resolvió los incidentes
 }
