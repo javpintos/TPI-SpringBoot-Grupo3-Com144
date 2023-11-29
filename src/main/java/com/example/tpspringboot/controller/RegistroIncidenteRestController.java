@@ -121,6 +121,15 @@ public class RegistroIncidenteRestController {
         if(body.get("resuelto") != null) {
             Boolean resuelto = (Boolean) body.get("resuelto");
             ri.setResuelto(resuelto);
+
+            /*Integer isResuelto = (Integer) body.get("resuelto");
+            if (isResuelto == 0){
+                ri.setResuelto(false);
+            }else{
+                ri.setResuelto(true);
+            }
+
+             */
         }
 
         if(body.get("tiempoEstimado") != null) {
