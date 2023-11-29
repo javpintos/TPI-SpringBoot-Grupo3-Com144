@@ -49,6 +49,10 @@ public class TipoProblemaRestController {
 
         //CREACION DEL OBJETO TipoProblema
         TipoProblema t = new TipoProblema();
+        t.setTipo(tipo);
+        t.setTiempo(tiempo);
+        t.setEspecialidades(e);
+        t.setRegistros(r);
 
         return tipoProblemaService.saveTipoProblema(t);
     }
@@ -73,8 +77,6 @@ public class TipoProblemaRestController {
             Integer tiempo = Integer.valueOf(String.valueOf(body.get("tiempo")));
             tipoProblema.setTiempo(tiempo);
         }
-
-
 
         //ESPECIALIDAD
         Set<Especialidad> e = new HashSet<Especialidad>();

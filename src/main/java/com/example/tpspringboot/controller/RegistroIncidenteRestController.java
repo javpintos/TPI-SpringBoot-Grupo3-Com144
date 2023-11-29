@@ -37,13 +37,14 @@ public class RegistroIncidenteRestController {
         //Date fechaResolucion = Date.valueOf(fechaResolucionString);
         Date fechaResolucion = null;
         String detalleProblema = String.valueOf(body.get("detalleProblema"));
-        String observacionTecnica = String.valueOf(body.get("observacionTecnica"));
+        //String observacionTecnica = String.valueOf(body.get("observacionTecnica"));
         //String resueltoInt = String.valueOf(body.get("resuelto"));
         Boolean resuelto = false;
 
         //CLIENTE
 
         Long clienteId = Long.valueOf((Integer) body.get("cliente_id"));
+        //ToDo validar si existe el cliente_id. Sino tirar exception
         Cliente c = clienteService.findClienteById(clienteId);
 
         //INCIDENTE
@@ -58,11 +59,14 @@ public class RegistroIncidenteRestController {
 
         //TIPO PROBLEMA
 
+        /*
         Set<TipoProblema> tp = new HashSet<TipoProblema>();
         for (Integer id: (ArrayList<Integer>) body.get("problemas")) {
             TipoProblema tipoProblema = tipoProblemaService.findTipoProblemaById(Long.valueOf(id));
             tp.add(tipoProblema);
         }
+
+         */
 
         //REGISTRO INCIDENTE
 
@@ -70,12 +74,12 @@ public class RegistroIncidenteRestController {
         registro.setFechaIncidente(fechaIncidente);
         registro.setFechaResolucion(fechaResolucion);
         registro.setDetalleProblema(detalleProblema);
-        registro.setObservacionTecnica(observacionTecnica);
+        //registro.setObservacionTecnica(observacionTecnica);
         registro.setResuelto(resuelto);
         registro.setCliente(c);
         registro.setIncidente(i);
         registro.setTecnico(t);
-        registro.setProblemas(tp);
+        //registro.setProblemas(tp);
 
         return registroIncidenteService.saveRegistroIncidente(registro);
     }
@@ -84,6 +88,8 @@ public class RegistroIncidenteRestController {
     public List<RegistroIncidente> fetchRegistroList(){
         return registroIncidenteService.getAllRegistroIncidente();
     }
+
+    //ToDo UpdateRegistroIncidente
 
     @DeleteMapping("registroIncidentes/{id}")
     public String deleteRegistroIncidenteById(@PathVariable("id") Long id){
@@ -96,7 +102,7 @@ public class RegistroIncidenteRestController {
         return registroIncidenteService.getCantidadResueltosByTecnicoId(id);
     }
 
-    @GetMapping("/registroincidente/CantRtosByTecnicoIdIncidenteID/{id}")
+    @GetMapping("/registroIncidentes/CantRtosByTecnicoIdIncidenteID/{id}")
     public int getCantRtosByTecnicoIdIncidenteID (@PathVariable("id") Long tecnico_id, @PathVariable("id") Long incidente_id){
         return registroIncidenteService.getCantRtosByTecnicoIdIncidenteID(tecnico_id, incidente_id);
     }
