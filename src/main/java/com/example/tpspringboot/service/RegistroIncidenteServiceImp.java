@@ -30,7 +30,7 @@ public class RegistroIncidenteServiceImp implements RegistroIncidenteService{
         riDB.setCliente(ri.getCliente());
         riDB.setIncidente(ri.getIncidente());
         riDB.setTecnico(ri.getTecnico());
-        if(!ri.getResuelto())
+        //if(!ri.getResuelto())
             riDB.setResuelto(ri.getResuelto());
         riDB.setDetalleProblema(ri.getDetalleProblema());
         riDB.setFechaResolucion(ri.getFechaResolucion());
@@ -53,7 +53,7 @@ public class RegistroIncidenteServiceImp implements RegistroIncidenteService{
 
     @Override
     public int getCantRtosByTecnicoIdIncidenteID(Long tecnico_id, Long incidente_id) {
-        return registroIncidenteRepository.getCantRtosByTecnicoIdIncidenteID(tecnico_id,incidente_id);
+        return 0;//registroIncidenteRepository.getCantRtosByTecnicoIdIncidenteID(tecnico_id,incidente_id);
     }
 
     @Override

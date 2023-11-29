@@ -5,8 +5,10 @@ import com.example.tpspringboot.entity.Cliente;
 import com.example.tpspringboot.service.ServicioService;
 import com.example.tpspringboot.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 
@@ -21,8 +23,12 @@ public class ClienteRestController {
 
     // Create
     @PostMapping("/clientes")
-    public Cliente saveCliente(@Validated @RequestBody Map<String, Object> body){
-
+    public Cliente saveCliente(@Validated @RequestBody Map<String, Object> body) throws Exception {
+        if (true){
+            //throw new Exception("Registro no encontrado");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Registro no encontrado");
+            //ExceptionHandling
+        }
         //LECTURA DE DATOS:
         //NOMBRE
         String razonSocial = String.valueOf(body.get("razonSocial"));
@@ -57,7 +63,7 @@ public class ClienteRestController {
 
     // Update
     @PutMapping("/clientes/{id}")
-    public Cliente updateCliente(@Validated @RequestBody Map<String, Object> body, @PathVariable("id") Long id){
+    public Cliente updateCliente(@Validated @RequestBody Map<String, Object> body, @PathVariable("id") Long id) throws Exception {
         //CREACION DEL OBJETO CLIENTE
         Cliente c = new Cliente();
         //LECTURA DE DATOS:
@@ -84,6 +90,9 @@ public class ClienteRestController {
         if(body.get("servicios") != null) {
             for (Integer servicioId : (ArrayList<Integer>) body.get("servicios")) {
                 Servicio servicio = servicioService.findServicioById(Long.valueOf(servicioId));
+                if(servicio==null){
+                    throw new Exception("Registro no encontrado");
+                }
                 s.add(servicio);
             }
         }

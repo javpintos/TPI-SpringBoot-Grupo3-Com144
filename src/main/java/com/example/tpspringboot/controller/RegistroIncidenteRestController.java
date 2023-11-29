@@ -122,6 +122,7 @@ public class RegistroIncidenteRestController {
             Boolean resuelto = (Boolean) body.get("resuelto");
             ri.setResuelto(resuelto);
 
+
             /*Integer isResuelto = (Integer) body.get("resuelto");
             if (isResuelto == 0){
                 ri.setResuelto(false);
@@ -151,6 +152,7 @@ public class RegistroIncidenteRestController {
             Long clienteId = Long.valueOf((Integer) body.get("cliente_id"));
             //ToDo validar si existe el cliente_id. Sino tirar exception
             Cliente c = clienteService.findClienteById(clienteId);
+
             ri.setCliente(c);
         }
 
@@ -209,6 +211,10 @@ public class RegistroIncidenteRestController {
     @GetMapping("/registroIncidentes/CantRtosByTecnicoIdIncidenteID/{id}")
     public int getCantRtosByTecnicoIdIncidenteID (@PathVariable("id") Long tecnico_id, @PathVariable("id") Long incidente_id){
         return registroIncidenteService.getCantRtosByTecnicoIdIncidenteID(tecnico_id, incidente_id);
+    }
+    @GetMapping("/TecnicoConMasIncidentesResueltosNdias/{dias}")
+    public Tecnico getTecnicoConMasIncidentesResueltos(@Validated @PathVariable("dias") Integer dias) {
+        return null;//Todo method
     }
 
 }

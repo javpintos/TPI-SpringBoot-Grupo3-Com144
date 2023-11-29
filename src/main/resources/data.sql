@@ -18,6 +18,10 @@ INSERT INTO tipo_problema (tipo, tiempo) VALUES ('Preventivo',7);
 INSERT INTO tipo_problema (tipo, tiempo) VALUES ('Correctivo',7);
 INSERT INTO tipo_problema (tipo, tiempo) VALUES ('Adaptativo',7);
 
+INSERT INTO tipo_problema_especialidad (especialidad_id, tipo_problema_id) VALUES (1,1);
+INSERT INTO tipo_problema_especialidad (especialidad_id, tipo_problema_id) VALUES (1,2);
+INSERT INTO tipo_problema_especialidad (especialidad_id, tipo_problema_id) VALUES (2,1);
+
 INSERT INTO servicio (nombre) VALUES ('Soporte Operativo Aplicaciones');
 INSERT INTO servicio (nombre) VALUES ('Soporte Operativo Sistemas Operativos');
 INSERT INTO servicio (nombre) VALUES ('Soporte Hardware');
