@@ -27,6 +27,6 @@ public class TipoProblema {
     @JoinTable(name="tipo_problema_especialidad", joinColumns = @JoinColumn(name="tipo_problema_id"), inverseJoinColumns = @JoinColumn(name="especialidad_id"))
     Set<Especialidad> especialidades;
 
-    @ManyToMany(mappedBy = "problemas")
+    @ManyToMany(mappedBy = "tipoProblemas")
     Set<RegistroIncidente> registros;
 }

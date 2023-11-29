@@ -14,6 +14,6 @@ public class Especialidad extends BaseEntity{
     private Set<Tecnico> tecnicos;
 
     @ManyToMany(mappedBy ="especialidades")
-    private Set<TipoProblema> problemas;
+    private Set<TipoProblema> tipoProblemas;
 
 }

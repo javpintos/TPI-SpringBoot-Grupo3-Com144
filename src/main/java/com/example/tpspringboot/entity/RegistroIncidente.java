@@ -25,7 +25,7 @@ public class RegistroIncidente {
     private String detalleProblema;
     private String observacionTecnica;
     private Boolean resuelto;
-    //ToDo agregar tiempoEstimado
+    private Integer tiempoEstimado;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
@@ -45,5 +45,5 @@ public class RegistroIncidente {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="registro_incidente_tipo_problema", joinColumns = @JoinColumn(name="registro_incidente_id"), inverseJoinColumns = @JoinColumn(name="tipo_problema_id"))
-    Set<TipoProblema> problemas;
+    Set<TipoProblema> tipoProblemas;
 }

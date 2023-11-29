@@ -35,7 +35,8 @@ public class RegistroIncidenteServiceImp implements RegistroIncidenteService{
         riDB.setDetalleProblema(ri.getDetalleProblema());
         riDB.setFechaResolucion(ri.getFechaResolucion());
         riDB.setObservacionTecnica(ri.getObservacionTecnica());
-        riDB.setProblemas(ri.getProblemas());
+        riDB.setTipoProblemas(ri.getTipoProblemas());
+        riDB.setTiempoEstimado(ri.getTiempoEstimado());
 
         return registroIncidenteRepository.save(riDB);
     }

@@ -15,7 +15,6 @@ public interface RegistroIncidenteRepository extends JpaRepository<RegistroIncid
 
     //Quién fue el técnico con más incidentes resueltos en los últimos N días
     @Query("SELECT COUNT (*) from RegistroIncidente ri where ri.tecnico.id = :id")
-    //@Query("SELECT t from Tecnico t where t.id = :id")
     int getCantidadResueltosByTecnicoId(@Param("id") Long id);
 
     //Quién fue el técnico con más incidentes resueltos de una determinada especialidad en los últimos N días
@@ -23,12 +22,10 @@ public interface RegistroIncidenteRepository extends JpaRepository<RegistroIncid
     int getCantRtosByTecnicoIdIncidenteID(@Param("tecnico_id") Long tecnicoId, @Param("incidente_id") Long incidenteId);
 
     /*Quién fue el técnico que más rápido resolvió los incidentes*/
-    //@Query("SELECT t. FROM RegistroIncidente ri WHERE ri.incidenteId=:incidente_id ORDER BY FUNCTION('datediff', 'fecha_resolucion', 'fecha_incidente')")
     /*@Query("SELECT ri FROM RegistroIncidente ri WHERE ri.id=:incidente_id ORDER BY FUNCTION('datediff', 'fecha_resolucion', 'fecha_incidente')")
     Long tecnicoMasRapido(@Param("incidente_id") Long id);*/
 
     //Para emitir reportes diarios de los incidentes asignados a cada tecnico y su estado
-    //@Query("SELECT tecnico, incidente, resuelto FROM RegistroIncidente ri WHERE ri.tecnicoId= :tecnico_id AND ri.fechaIncidente= :fecha_incidente")
     @Query("SELECT ri.tecnico, ri.incidente, ri.resuelto FROM RegistroIncidente ri WHERE ri.id= :tecnico_id AND ri.fechaIncidente= :fecha_incidente")
     List<RegistroIncidente> getIncidentesByTecnico(@Param("tecnico_id") Long tecnicoId, @Param("fecha_incidente") Date fechaIncidente);
 
@@ -38,4 +35,5 @@ public interface RegistroIncidenteRepository extends JpaRepository<RegistroIncid
             "WHERE ri.fechaResolucion >= CURRENT_DATE - :numDias " +
             "GROUP BY ri.tecnicoId ORDER BY cantidad DESC LIMIT 1")
     List<RegistroIncidente> getTecnicoConMasRegistrosResueltosEnNDias(@Param("resuelto") Boolean resuelto, @Param("numDias") int numDias);
-*/}
+*/
+}

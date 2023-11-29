@@ -27,7 +27,8 @@ public class ClienteServiceImp implements ClienteService {
 
     @Override
     public Cliente updateCliente(Cliente cliente, Long id) {
-        Cliente clienteDB = clienteRepository.getReferenceById(id);
+        //Cliente clienteDB = clienteRepository.getReferenceById(id);
+        Cliente clienteDB = clienteRepository.findById(id).get();
         if(!cliente.getRazonSocial().trim().isEmpty()){
             clienteDB.setRazonSocial(cliente.getRazonSocial());
         }
