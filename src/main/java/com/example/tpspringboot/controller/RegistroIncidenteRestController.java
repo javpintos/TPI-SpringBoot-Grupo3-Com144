@@ -7,6 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @RestController
@@ -212,9 +213,29 @@ public class RegistroIncidenteRestController {
     public int getCantRtosByTecnicoIdIncidenteID (@PathVariable("id") Long tecnico_id, @PathVariable("id") Long incidente_id){
         return registroIncidenteService.getCantRtosByTecnicoIdIncidenteID(tecnico_id, incidente_id);
     }
-    @GetMapping("/TecnicoConMasIncidentesResueltosNdias/{dias}")
+    /*@GetMapping("/TecnicoConMasIncidentesResueltosNdias/{dias}")
     public Tecnico getTecnicoConMasIncidentesResueltos(@Validated @PathVariable("dias") Integer dias) {
         return null;//Todo method
+    }
+    */
+    @GetMapping("/registroIncidentes/findAllTecnicosByIncidenciaResueltaEntreFechas/{id}")//no sé que poner en vez de {id} va {fechaIncidente}
+    public Tecnico findAllTecnicosByIncidenciaResueltaEntreFechas (@PathVariable("fechaIncidente") Date fecha_incidente, @PathVariable("fechaResolucion") Date fecha_Resolucion, @PathVariable("especialidad") Especialidad e){
+        return registroIncidenteService.findAllTecnicosByIncidenciaResueltaEntreFechas(fecha_incidente,fecha_Resolucion,e);
+    }
+
+    @GetMapping("/registroIncidentes/tecnicoMasRapido/{id}")////no sé que poner en vez de {id} va {fechaIncidente}
+    public Long tecnicoMasRapido (@PathVariable("id") Long id){
+        return registroIncidenteService.tecnicoMasRapido(id);
+    }
+
+    @GetMapping("/registroIncidentes/getTecnicoConMasRegistrosResueltosEnNDias/{id}")//no sé que poner en vez de {id} va {fechaIncidente}
+    public List<RegistroIncidente> getTecnicoConMasRegistrosResueltosEnNDias (@PathVariable("resuelto") Boolean resuelto, @PathVariable("numDias") int numDias){
+        return registroIncidenteService.getTecnicoConMasRegistrosResueltosEnNDias(resuelto, numDias);
+    }
+
+    @GetMapping("/registroIncidentes/getTecnicoConMasRegistrosResueltosEnNDias/{id}")
+    public List<RegistroIncidente> getTecnicoConMasRegistrosResueltosEnNDias (@PathVariable("fechaIncidente") Date fecha_incidente){
+        return registroIncidenteService.getIncidentesByDay(fecha_incidente);
     }
 
 }

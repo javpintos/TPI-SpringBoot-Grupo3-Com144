@@ -19,7 +19,7 @@ public interface RegistroIncidenteService {
     int getCantidadResueltosByTecnicoId (Long id);
     int getCantRtosByTecnicoIdIncidenteID (Long tecnicoId, Long incidenteId);
 
-    Tecnico findAllTecnicosByIncidenciaResueltaEntreFechas(LocalDateTime fechaIncidente, LocalDateTime fechaResolucion, Especialidad e);
+    Tecnico findAllTecnicosByIncidenciaResueltaEntreFechas(Date fechaIncidente, Date fechaResolucion, Especialidad e);
 
     Long tecnicoMasRapido(Long id);
 

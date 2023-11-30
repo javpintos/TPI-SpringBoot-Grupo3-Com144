@@ -33,8 +33,8 @@ public interface RegistroIncidenteRepository extends JpaRepository<RegistroIncid
             " AND i.fechaEstimada BETWEEN :fechaInicio AND :fechaFin "+
             " AND :e IN (SELECT t.especialidades FROM Tecnico t WHERE t.id = i.tecnico.id)"+
             " GROUP BY i.tecnico.id ORDER BY COUNT(i.id) DESC LIMIT 1) ")
-    public Tecnico findAllTecnicosByIncidenciaResueltaEntreFechas(@Param("fechaInicio") LocalDateTime fechaInicio,
-                                                                  @Param("fechaFin")LocalDateTime fechaFin, @Param("e") Especialidad e);
+    public Tecnico findAllTecnicosByIncidenciaResueltaEntreFechas(@Param("fechaIncidente") Date fechaIncidente,
+                                                                  @Param("fechaResolucion")Date fechaResolucion, @Param("e") Especialidad e);
 
 
 
