@@ -1,10 +1,14 @@
 package com.example.tpspringboot.service;
 
+import com.example.tpspringboot.entity.Especialidad;
 import com.example.tpspringboot.entity.RegistroIncidente;
+import com.example.tpspringboot.entity.Tecnico;
 import com.example.tpspringboot.repository.RegistroIncidenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -52,8 +56,28 @@ public class RegistroIncidenteServiceImp implements RegistroIncidenteService{
     }
 
     @Override
-    public int getCantRtosByTecnicoIdIncidenteID(Long tecnico_id, Long incidente_id) {
-        return 0;//registroIncidenteRepository.getCantRtosByTecnicoIdIncidenteID(tecnico_id,incidente_id);
+    public int getCantRtosByTecnicoIdIncidenteID(Long tecnicoId, Long incidenteId) {
+        return 0;//registroIncidenteRepository.getCantRtosByTecnicoIdIncidenteID(tecnicoId,incidenteId);
+    }
+
+    @Override
+    public Tecnico findAllTecnicosByIncidenciaResueltaEntreFechas(LocalDateTime fechaIncidente, LocalDateTime fechaResolucion, Especialidad e) {
+        return null;//registroIncidenteRepository.findAllTecnicosByIncidenciaResueltaEntreFechas(fechaIncidente,fechaResolucion,e);
+    }
+
+    @Override
+    public Long tecnicoMasRapido(Long id) {
+        return null;//registroIncidenteRepository.tecnicoMasRapido(id);
+    }
+
+    @Override
+    public List<RegistroIncidente> getIncidentesByDay(Date fechaIncidente) {
+        return null;//registroIncidenteRepository.getIncidentesByDate(fechaIncidente);
+    }
+
+    @Override
+    public List<RegistroIncidente> getTecnicoConMasRegistrosResueltosEnNDias(Boolean resuelto, int numDias) {
+        return null;//registroIncidenteRepository.getTecnicoConMasRegistrosResueltosEnNDias(resuelto, numDias);
     }
 
     @Override

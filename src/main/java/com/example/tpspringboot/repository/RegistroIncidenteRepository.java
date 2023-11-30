@@ -26,7 +26,7 @@ public interface RegistroIncidenteRepository extends JpaRepository<RegistroIncid
     int getCantRtosByTecnicoIdIncidenteID(@Param("tecnico_id") Long tecnicoId, @Param("incidente_id") Long incidenteId);
 
      */
-    /*
+    /**/
     @Query (" SELECT t FROM Tecnico as t "+
             " WHERE t.id =  ( SELECT i.tecnico.id FROM Incidencia as i "+
             " WHERE i.resuelto = TRUE "+
@@ -36,21 +36,22 @@ public interface RegistroIncidenteRepository extends JpaRepository<RegistroIncid
     public Tecnico findAllTecnicosByIncidenciaResueltaEntreFechas(@Param("fechaInicio") LocalDateTime fechaInicio,
                                                                   @Param("fechaFin")LocalDateTime fechaFin, @Param("e") Especialidad e);
 
-     */
+
 
     //Quién fue el técnico que más rápido resolvió los incidentes
     /*
     @Query("SELECT ri FROM RegistroIncidente ri WHERE ri.id=:incidente_id ORDER BY FUNCTION('datediff', 'fecha_resolucion', 'fecha_incidente')")
-    //Long tecnicoMasRapido(@Param("incidente_id") Long id);
-    Long tecnicoMasRapido();
+    Long tecnicoMasRapido(@Param("incidente_id") Long id);
+    //Long tecnicoMasRapido();
+*/
 
-     */
 
 
     //Para emitir reportes diarios de los incidentes asignados a cada tecnico y su estado
-    @Query("SELECT ri.tecnico, ri.incidente, ri.resuelto FROM RegistroIncidente ri WHERE ri.fechaIncidente= :fecha_incidente")
+    @Query("SELECT ri.tecnico, ri.incidente, ri.resuelto FROM RegistroIncidente ri WHERE ri.fechaIncidente= :fecha_incidente" +
+            "GROUP BY ri.tecnicoId")
     //List<RegistroIncidente> getIncidentesByTecnico(@Param("tecnico_id") Long tecnicoId, @Param("fecha_incidente") Date fechaIncidente);
-    List<RegistroIncidente> getIncidentesByTecnico(@Param("fecha_incidente") Date fechaIncidente);//group by
+    List<RegistroIncidente> getIncidentesByDate(@Param("fecha_incidente") Date fechaIncidente);//group by
 
     //Quién fue el técnico con más registros resueltos en los últimos N días
     /*
@@ -58,5 +59,5 @@ public interface RegistroIncidenteRepository extends JpaRepository<RegistroIncid
             "WHERE ri.fechaResolucion >= CURRENT_DATE - :numDias " +
             "GROUP BY ri.tecnicoId ORDER BY cantidad DESC LIMIT 1")
     List<RegistroIncidente> getTecnicoConMasRegistrosResueltosEnNDias(@Param("resuelto") Boolean resuelto, @Param("numDias") int numDias);
-    */
+*/
 }
