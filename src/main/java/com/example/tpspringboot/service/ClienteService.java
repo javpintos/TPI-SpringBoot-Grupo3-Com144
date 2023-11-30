@@ -2,6 +2,7 @@ package com.example.tpspringboot.service;
 
 import com.example.tpspringboot.entity.Cliente;
 import com.example.tpspringboot.entity.Incidente;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,5 +23,7 @@ public interface ClienteService {
     void deleteClienteById(Long id);
 
     Cliente findClienteById(Long id);
+
+    Cliente getClienteByRazonSocialAndCUIT(String razonSocial, String cuit);
 
 }

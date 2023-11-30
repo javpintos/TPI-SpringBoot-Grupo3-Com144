@@ -51,4 +51,9 @@ public class ClienteServiceImp implements ClienteService {
     public Cliente findClienteById(Long id) {
         return clienteRepository.getReferenceById(id);
     }
+
+    @Override
+    public Cliente getClienteByRazonSocialAndCUIT(String razonSocial, String cuit){
+        return clienteRepository.getClienteByRazonSocialAndCUIT(razonSocial, cuit);
+    }
 }

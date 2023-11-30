@@ -20,15 +20,17 @@ public class ClienteRestController {
     @Autowired
     private ServicioService servicioService;
 
-
     // Create
     @PostMapping("/clientes")
     public Cliente saveCliente(@Validated @RequestBody Map<String, Object> body) throws Exception {
+        /*
         if (true){
             //throw new Exception("Registro no encontrado");
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Registro no encontrado");
             //ExceptionHandling
         }
+         */
+
         //LECTURA DE DATOS:
         //NOMBRE
         String razonSocial = String.valueOf(body.get("razonSocial"));
@@ -66,6 +68,7 @@ public class ClienteRestController {
     public Cliente updateCliente(@Validated @RequestBody Map<String, Object> body, @PathVariable("id") Long id) throws Exception {
         //CREACION DEL OBJETO CLIENTE
         Cliente c = new Cliente();
+
         //LECTURA DE DATOS:
         //RAZON SOCIAL
         if(body.get("razonSocial") != null) {
@@ -97,6 +100,7 @@ public class ClienteRestController {
             }
         }
         c.setServicios(s);
+
         return clienteService.updateCliente(c, id);
     }
 
@@ -105,5 +109,10 @@ public class ClienteRestController {
     public String deleteClienteById(@PathVariable("id") Long id){
         clienteService.deleteClienteById(id);
         return "Cliente eliminado correctamente";
+    }
+
+    @GetMapping("/clientes/getClienteByRazonSocialAndCuit")
+    public Cliente getClienteByRazonSocialAndCUIT(@RequestParam String razonSocial, @RequestParam String cuit){
+        return clienteService.getClienteByRazonSocialAndCUIT(razonSocial, cuit);
     }
 }

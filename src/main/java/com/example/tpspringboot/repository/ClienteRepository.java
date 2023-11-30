@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-    @Query("SELECT c FROM Cliente c where c.razonSocial= :RazonSocial AND c.CUIT = :cuit")
-    Cliente getClienteByRazonSocialAndCUIT(@Param("RazonSocial") String rs, @Param("cuit") String cuit);
+    @Query("SELECT c FROM Cliente c where c.razonSocial= :razon_social AND c.CUIT = :cuit")
+    Cliente getClienteByRazonSocialAndCUIT(@Param("razon_social") String rs, @Param("cuit") String cuit);
 }
