@@ -25,7 +25,7 @@ public class RegistroIncidente {
     private String detalleProblema;
     private String observacionTecnica;
     private Boolean resuelto;
-    private Integer tiempoEstimado;
+    private Date fechaEstimada;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)

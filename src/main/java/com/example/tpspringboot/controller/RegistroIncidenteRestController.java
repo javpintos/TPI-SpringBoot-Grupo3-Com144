@@ -40,7 +40,8 @@ public class RegistroIncidenteRestController {
         //String observacionTecnica = String.valueOf(body.get("observacionTecnica"));
         //String resueltoInt = String.valueOf(body.get("resuelto"));
         Boolean resuelto = false;
-        Integer tiempoEstimado = Integer.parseInt(String.valueOf(body.get("tiempoEstimado")));
+        String fechaEstimadaString = String.valueOf(body.get("fechaEstimada"));
+        Date fechaEstimada = java.sql.Date.valueOf(fechaEstimadaString);
 
         //CLIENTE
 
@@ -79,7 +80,7 @@ public class RegistroIncidenteRestController {
         registro.setCliente(c);
         registro.setIncidente(i);
         registro.setTecnico(t);
-        registro.setTiempoEstimado(tiempoEstimado);
+        registro.setFechaEstimada(fechaEstimada);
         //registro.setProblemas(tp);
 
         return registroIncidenteService.saveRegistroIncidente(registro);
@@ -133,9 +134,10 @@ public class RegistroIncidenteRestController {
              */
         }
 
-        if(body.get("tiempoEstimado") != null) {
-            Integer tiempoEstimado = Integer.valueOf(String.valueOf(body.get("tiempoEstimado")));
-            ri.setTiempoEstimado(tiempoEstimado);
+        if(body.get("fechaEstimada") != null) {
+            String fechaEstimadaString = String.valueOf(body.get("fechaEstimada"));
+            Date fechaEstimada = java.sql.Date.valueOf(fechaEstimadaString);
+            ri.setFechaEstimada(fechaEstimada);
         }
 
         /*
@@ -208,13 +210,23 @@ public class RegistroIncidenteRestController {
         return registroIncidenteService.getCantidadResueltosByTecnicoId(id);
     }
 
-    @GetMapping("/registroIncidentes/CantRtosByTecnicoIdIncidenteID/{id}")
-    public int getCantRtosByTecnicoIdIncidenteID (@PathVariable("id") Long tecnico_id, @PathVariable("id") Long incidente_id){
+    @GetMapping("/registroIncidentes/CantRtosByTecnicoIdIncidenteID")
+    public int getCantRtosByTecnicoIdIncidenteID (@RequestParam("tecnicoId") Long tecnico_id, @RequestParam("incidenteId") Long incidente_id){
         return registroIncidenteService.getCantRtosByTecnicoIdIncidenteID(tecnico_id, incidente_id);
     }
     @GetMapping("/TecnicoConMasIncidentesResueltosNdias/{dias}")
     public Tecnico getTecnicoConMasIncidentesResueltos(@Validated @PathVariable("dias") Integer dias) {
         return null;//Todo method
+    }
+
+    @GetMapping("/registroIncidentes/findAllTecnicosByIncidenciaResueltaEntreFechas")//no sé que poner en vez de {id} va {fechaIncidente}
+    public Tecnico findAllTecnicosByIncidenciaResueltaEntreFechas (@RequestParam("fechaIncidente") Date fecha_incidente, @RequestParam("fechaResolucion") Date fecha_resolucion){
+        return registroIncidenteService.findAllTecnicosByIncidenciaResueltaEntreFechas(fecha_incidente, fecha_resolucion);
+    }
+
+    @GetMapping("/registroIncidentes/getIncidentesByDate")
+    public RegistroIncidente getIncidentesByDate (@RequestParam("fechaIncidente") Date fecha_incidente){
+        return registroIncidenteService.getIncidentesByDate(fecha_incidente);
     }
 
 }
